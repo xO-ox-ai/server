@@ -6,7 +6,7 @@
 import type { TestingPinia } from '@pinia/testing'
 
 import { createTestingPinia } from '@pinia/testing'
-import { mount } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // `<script setup>` children are invisible to VTU stubs, so swap them via
@@ -41,18 +41,18 @@ vi.mock('../../../../components/Users/userFormUtils.ts', async (importActual) =>
 import NcLoadingIcon from '@nextcloud/vue/components/NcLoadingIcon'
 import EditUserDialog from './EditUserDialog.vue'
 import { useUsersStore } from '../../store/users.ts'
-import { flushPromises, NcDialogStub } from './dialogTestHelpers.ts'
+import { NcDialogStub } from './dialogTestHelpers.ts'
 
 let pinia: TestingPinia
 let store: ReturnType<typeof useUsersStore>
 
 function mountDialog() {
 	return mount(EditUserDialog, {
-		propsData: {
+		props: {
 			user: { id: 'bob', backendCapabilities: { setPassword: true } },
 			quotaOptions: [],
 		},
-		pinia,
+		global: { plugins: [pinia] },
 	})
 }
 
