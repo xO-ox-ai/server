@@ -8,7 +8,7 @@ module.exports = {
 	settings: {
 		main: path.join(__dirname, 'apps/settings/src', 'main-settings.ts'),
 		'vue-settings-profile-contact': path.join(__dirname, 'apps/settings/src', 'main-profile-contact.js'),
-		'vue-settings-users-management': path.join(__dirname, 'apps/settings/src', 'main-users-management.ts'),
+		'vue-settings-users-management': path.join(__dirname, 'apps/settings/src/sections/account-management', 'main.ts'),
 		'declarative-settings-forms': path.join(__dirname, 'apps/settings/src', 'main-declarative-settings-forms.ts'),
 	},
 }
